@@ -81,27 +81,43 @@ fn main()
             {
                 let path = Path::new(file_path.clone());
 
-                match (File::open(&path)) 
+                if !path.exists()
                 {
-                    Some(mut msg) => 
-                    {   
-                        response = 
-                            ~"HTTP/1.1 200 OK\r\nContent-Type: text/html; charset=UTF-8\r\n\r\n"
-                            + msg.read_to_str()
-                            + "\r\n";
-                    },
-                    None => 
+                    response = 
+                        ~"HTTP/1.1 200 OK\r\nContent-Type: text/html; charset=UTF-8\r\n\r\n
+                        <doctype !html><html><head><title>Hello, Rust!</title>
+                        <style>body { background-color: #111; color: #FFEEAA }
+                            h1 { font-size:2cm; text-align: center; color: black; text-shadow: 0 0 4mm red}
+                            h2 { font-size:2cm; text-align: center; color: black; text-shadow: 0 0 4mm green}
+                        </style></head>
+                        <body>
+                        <h1>File not found.</h1>
+                        </body></html>\r\n";
+                }
+                else
+                {
+                    match (File::open(&path)) 
                     {
-                        response = 
-                            ~"HTTP/1.1 200 OK\r\nContent-Type: text/html; charset=UTF-8\r\n\r\n
-                            <doctype !html><html><head><title>Hello, Rust!</title>
-                            <style>body { background-color: #111; color: #FFEEAA }
-                                h1 { font-size:2cm; text-align: center; color: black; text-shadow: 0 0 4mm red}
-                                h2 { font-size:2cm; text-align: center; color: black; text-shadow: 0 0 4mm green}
-                            </style></head>
-                            <body>
-                            <h1>File not found.</h1>
-                            </body></html>\r\n";
+                        Some(mut msg) => 
+                        {   
+                            response = 
+                                ~"HTTP/1.1 200 OK\r\nContent-Type: text/html; charset=UTF-8\r\n\r\n"
+                                + msg.read_to_str()
+                                + "\r\n";
+                        },
+                        None => 
+                        {
+                            response = 
+                                ~"HTTP/1.1 200 OK\r\nContent-Type: text/html; charset=UTF-8\r\n\r\n
+                                <doctype !html><html><head><title>Hello, Rust!</title>
+                                <style>body { background-color: #111; color: #FFEEAA }
+                                    h1 { font-size:2cm; text-align: center; color: black; text-shadow: 0 0 4mm red}
+                                    h2 { font-size:2cm; text-align: center; color: black; text-shadow: 0 0 4mm green}
+                                </style></head>
+                                <body>
+                                <h1>File not found.</h1>
+                                </body></html>\r\n";
+                        }
                     }
                 }
             }
