@@ -84,8 +84,8 @@ fn main()
                 if !path.exists()
                 {
                     response = 
-                        ~"HTTP/1.1 200 OK\r\nContent-Type: text/html; charset=UTF-8\r\n\r\n
-                        <doctype !html><html><head><title>Hello, Rust!</title>
+                        ~"HTTP/1.1 404 Not Found\r\nContent-Type: text/html; charset=UTF-8\r\n\r\n
+                        <doctype !html><html><head><title>404 Not Found</title>
                         <style>body { background-color: #111; color: #FFEEAA }
                             h1 { font-size:2cm; text-align: center; color: black; text-shadow: 0 0 4mm red}
                             h2 { font-size:2cm; text-align: center; color: black; text-shadow: 0 0 4mm green}
@@ -108,8 +108,8 @@ fn main()
                         None => 
                         {
                             response = 
-                                ~"HTTP/1.1 200 OK\r\nContent-Type: text/html; charset=UTF-8\r\n\r\n
-                                <doctype !html><html><head><title>Hello, Rust!</title>
+                                ~"HTTP/1.1 404 Not Found\r\nContent-Type: text/html; charset=UTF-8\r\n\r\n
+                                <doctype !html><html><head><title>404 Not Found</title>
                                 <style>body { background-color: #111; color: #FFEEAA }
                                     h1 { font-size:2cm; text-align: center; color: black; text-shadow: 0 0 4mm red}
                                     h2 { font-size:2cm; text-align: center; color: black; text-shadow: 0 0 4mm green}
@@ -138,8 +138,8 @@ fn main()
             else
             {
                 response =
-                    ~"HTTP/1.1 403 ERROR\r\nContent-Type: text/html; charset=UTF-8\r\n\r\n
-                     <doctype !html><html><head><title>Hello, Rust!</title>
+                    ~"HTTP/1.1 403 Forbidden\r\nContent-Type: text/html; charset=UTF-8\r\n\r\n
+                     <doctype !html><html><head><title>403 Forbidden</title>
                      <style>body { background-color: #111; color: #FFEEAA }
                             h1 { font-size:2cm; text-align: center; color: black; text-shadow: 0 0 4mm red}
                             h2 { font-size:2cm; text-align: center; color: black; text-shadow: 0 0 4mm green}
